@@ -4,6 +4,7 @@ import { IMovie } from "../interface/apidata.interface";
 const Video = () => {
   const [nowPlayingMovie, setNowPlayingMovie] = useState<IMovie | null>(null);
   const [popularMovie, setPopularMovie] = useState<IMovie | null>(null);
+  const [upcomingMovie, setUpcomingMovie] = useState<IMovie | null>(null);
 
   const apiGet = async (param: string) => {
     const apiUrl: string = `${process.env.REACT_APP_API_URL}${param}?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=1`;
@@ -28,10 +29,17 @@ const Video = () => {
       console.log("popular :: ", typedResp);
     });
   };
+  const getUpcomingMovies = () => {
+    apiGet("/upcoming").then((res: IMovie) => {
+      const typedResp: IMovie = { ...res };
+      console.log("upcoming :: ", typedResp);
+    });
+  };
 
   useEffect(() => {
     getNowPlayMovies();
     getPopularMovies();
+    getUpcomingMovies();
   }, []);
 
   return (

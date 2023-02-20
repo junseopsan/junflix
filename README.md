@@ -42,7 +42,7 @@
 
 ```
 
-### GET LATEST (/movie/popular)
+### GET POPULAR (/movie/popular)
 ```
 https://api.themoviedb.org/3/movie/popular?api_key=45bbe4d969c51afc4c44a7b6d95526dd&language=ko&page=1
 
