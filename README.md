@@ -1,46 +1,89 @@
-# Getting Started with Create React App
+# JUNFLIX
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### MOVIE API 
+- 45bbe4d969c51afc4c44a7b6d95526dd
 
-## Available Scripts
 
-In the project directory, you can run:
+## DTO
 
-### `npm start`
+### NOW_PLAYING (/movie/now_playing)
+```
+// https://api.themoviedb.org/3/movie/now_playing?api_key=45bbe4d969c51afc4c44a7b6d95526dd&language=ko&page=1
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- id: number 키 값
+- title: string 제목
+- overview: string 설명
+- poster_path: string 포스터주소
+- release_date: string 개봉일자
+- popularity: number 인기도
+- vote_count: number 투표수
+- vote_average: number 투표평균
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
 
-### `npm test`
+### GET LATEST (/movie/latest)
+```
+https://api.themoviedb.org/3/movie/latest?api_key=45bbe4d969c51afc4c44a7b6d95526dd&language=ko
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- id: number 키 값
+- poster_path: string 포스터주소
+- status: string 상태
+- title: string 제목
+- tagline: string 태그
+- popularity: number 인기도
+- vote_count: number투표수
+- vote_average: number 투표평균
+```
 
-### `npm run build`
+### GET UPCOMING (/movie/upcoming)
+```
+https://api.themoviedb.org/3/movie/upcoming?api_key=45bbe4d969c51afc4c44a7b6d95526dd&language=ko&page=1
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- id: number 키 값
+- title: string 제목
+- overview: string 설명
+- poster_path: string 포스터주소
+- release_date: string 개봉일자
+- popularity: number 인기도
+- vote_count: number 투표수
+- vote_average: number  투표평균
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### GET DETAILS (/movie/{movie_id})
+```
+https://api.themoviedb.org/3/movie/505642?api_key=45bbe4d969c51afc4c44a7b6d95526dd&language=ko
 
-### `npm run eject`
+- status: string 상태
+- poster_path: string 포스터 주소
+- title: string 제목
+- runtime: number 러닝타임
+- tagline: string 태그
+- genres: [{id:string, name: string}] 장르
+- popularity: number 인기도
+- vote_count: number 투표수
+- vote_average: number 투표평균
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Get Videos (/movie/{movie_id}/videos)
+```
+https://api.themoviedb.org/3/movie/505642/videos?api_key=45bbe4d969c51afc4c44a7b6d95526dd&language=ko
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- name: string 제목
+- key: string 키
+- id: string ID
+- published_at: string 개시 일자
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+### Rate Movie (/movie/{movie_id}/rating)
+```
+https://api.themoviedb.org/3/movie/505642/rating?api_key=45bbe4d969c51afc4c44a7b6d95526dd
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Request Body application/json
+{
+  "value": 8.5
+}
 
-## Learn More
+This is the value of the rating you want to submit. The value is expected to be between 0.5 and 10.0.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
